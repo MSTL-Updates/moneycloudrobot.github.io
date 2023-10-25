@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html>
+<head><title>Hello World! </title>
+<style>
+  #myButton {
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 0 auto;
+  }
+</style>
+</head>
 <body>
-<h1>Hello World! </h1>
-<a href="https://example.com">
-  <button style="background-color: purple; color: white;">Click me!</button>
-</a>
+  <div id="countdown"></div>
+  <script>
+    var count = 10; // 10 seconds timer
+    var countdownElement = document.getElementById("countdown");
+    
+    function updateCountdown() {
+      countdownElement.innerText = "Button will appear in " + count + " seconds";
+      count--;
 
+      if (count < 0) {
+        clearInterval(timer);
+        countdownElement.style.display = "none";
+        var button = document.getElementById("myButton");
+        button.style.display = "block";
+        
+        // Check if the URL contains the 'redirect' parameter
+        var urlParams = new URLSearchParams(window.location.search);
+        var redirectURL = urlParams.get("redirect");
+        
+        if (redirectURL) {
+          button.href = redirectURL;
+        }
+      }
+    }
+
+    var timer = setInterval(updateCountdown, 1000);
+  </script>
+  <button id="myButton" style="display: none;">
+    Click Me
+  </button>
 </body>
 </html>
